@@ -36,7 +36,9 @@ class CecsController < ApplicationController
   # GET /cecs/new
   # GET /cecs/new.xml
   def new
-    @cec = Cec.new
+    @cec = Cec.new(:cep => params[:cep])
+    @cec.save
+    @cec.errors.clear
 
     respond_to do |format|
       format.html # new.html.erb
