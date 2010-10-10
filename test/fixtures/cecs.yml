@@ -1,0 +1,40 @@
+# == Schema Information
+# Schema version: 20101005005317
+#
+# Table name: cecs
+#
+#  id               :integer         not null, primary key
+#  nome_do_cliente  :string(255)
+#  numero_do_pedido :string(255)
+#  endereco         :string(255)
+#  complemento      :string(255)
+#  bairro           :string(255)
+#  cidade           :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  cep              :string(255)
+#  distancia        :decimal(, )
+#  latitude         :decimal(, )
+#  longitude        :decimal(, )
+#  valor            :decimal(, )
+#  comercial        :boolean
+#  data_da_entrega  :date
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nome_do_cliente: MyString
+  numero_do_pedido: MyString
+  endereco: MyString
+  complemento: MyString
+  bairro: MyString
+  cidade: MyString
+
+two:
+  nome_do_cliente: MyString
+  numero_do_pedido: MyString
+  endereco: MyString
+  complemento: MyString
+  bairro: MyString
+  cidade: MyString

@@ -1,0 +1,77 @@
+<%= form_for(@cec) do |f| %>
+  <% if @cec.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cec.errors.count, "error") %> prohibited this cec from being saved:</h2>
+
+      <ul>
+      <% @cec.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_do_cliente %><br />
+    <%= f.text_field :nome_do_cliente %>
+  </div>
+
+  <div class="field">
+    <%= f.label :requisicao %><br />
+    <%= f.text_field :numero_do_pedido %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :comercial %> Endereço comercial
+  </div>
+ 
+  <div class="field">
+    <%= f.label :data_da_entrega %><br />
+    <%= f.date_select :data_da_entrega, {:order => [:day, :month, :year]} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :valor %><br />
+    <%= f.text_field :valor %>
+  </div>
+
+  <fieldset>
+  <div class="field">
+    <%= f.label :cep %><br />
+    <%= f.text_field :cep %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :endereco %><br />
+    <%= f.text_field :endereco %>
+  </div>
+  <div class="field">
+    <%= f.label :complemento %><br />
+    <%= f.text_field :complemento %>
+  </div>
+  <div class="field">
+    <%= f.label :bairro %><br />
+    <%= f.text_field :bairro %>
+  </div>
+  <div class="field">
+    <%= f.label :cidade %><br />
+    <%= f.text_field :cidade %>
+  </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <fieldset>
+  	  <div class="field">
+	    <%= f.label :observacao %><br />
+	    <%= f.text_area :observacao %>
+	  </div>
+  </fieldset>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

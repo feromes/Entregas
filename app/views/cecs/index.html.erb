@@ -1,0 +1,25 @@
+<% if @cecs.empty? %>
+	<h1>Nenhum CEC</h1>
+<% else %>
+	<h1>CEC's de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> <%= "até " + @cecs.last.data_da_entrega.strftime('%d/%m') unless @cecs.last.data_da_entrega == @cecs.first.data_da_entrega %></h1>
+
+	<table>
+	<% @cecs.each do |cec| %>
+		<tr>
+			<td>CEC<br/><%= cec.id %></td>
+			<td>REQ<br/><%= link_to cec.numero_do_pedido, cec%></td>
+			<td><%= link_to cec.nome_do_cliente, cec %><br/>
+				<i>Endereço <%= cec.comercial? ? "Comercial" : "Residencial" %></i><br/>
+			  	<%= cec.endereco %>, <%= cec.complemento %><br/>
+			  	<%= cec.bairro %> - <%= cec.cidade %><br/>
+			  	CEP: <b><%= cec.cep %></b>
+				</td>
+			<td>Distância<br/><i><%= number_with_precision(cec.distancia_da_farmacia, :precision => 3, :separator => " Km e ") %> m</i></td>
+			<td><%= cec.data_da_entrega.strftime("%d/%m/%y") %></td>
+			<td>R$ <%= cec.valor %></td>
+		
+		</tr>
+	<% end %>
+	</table>
+<% end %>
+<%= link_to 'Novo Cec', new_cec_path %>

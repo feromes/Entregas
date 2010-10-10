@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+  <h2>Cliente: <%= @cec.nome_do_cliente %> - CEC nº <%= @cec.id %></h2>
+
+  <h3>VALOR: R$ <%= number_with_precision(@cec.valor, :precision => 2) %></h3>
+
+  <h3><%= @cec.data_da_entrega.strftime("%d/%m/%y") %> - REQ(s): <%= @cec.numero_do_pedido %></h3>
+
+<p>
+  <i>Endereço <%= @cec.comercial? ? "Comercial" : "Residencial" %></i><br/>
+  <%= @cec.endereco %>, <%= @cec.complemento %><br/>
+  <%= @cec.bairro %> - <%= @cec.cidade %><br/>
+  CEP: <b><%= @cec.cep %></b><br/>
+  <i><%= number_with_precision(@cec.distancia_da_farmacia, :precision => 3, :separator => " Km e ") %> metros de distancia</i>
+</p>
+
+<p>
+  Obs.: <i><%= @cec.observacao %></i>
+</p>
+
+<%= raw(@map.to_html) %>
+<div style="width: 600px; height: 500px;">
+	<%= raw(@map.div) %>
+</div>
+
+<span class="links">
+<%= link_to 'Editar', edit_cec_path(@cec) %> |
+<%= link_to 'Voltar', cecs_path %>
+</span>
