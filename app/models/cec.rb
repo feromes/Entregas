@@ -22,8 +22,8 @@
 #
 
 class Cec < ActiveRecord::Base
-  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :complemento, :bairro, :cidade, :valor], :message => "não pode estar em branco"
-
+  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :numero, :bairro, :cidade, :valor], :message => "não pode estar em branco"
+  validates_numericality_of :numero, :on => :create, :message => "deve ser um número"
   before_validation :busca_cep  
   before_validation :preenche_endereco
   
@@ -53,7 +53,7 @@ class Cec < ActiveRecord::Base
   end
   
   def endereco_completo
-    "#{self[:endereco]}, #{self[:complemento]}, #{self[:bairro]}, #{self[:cidade]}, SP, Brasil"
+    "#{self[:endereco]}, #{self[:numero].to_s}, #{self[:bairro]}, #{self[:cidade]}, SP, Brasil"
   end
   
   

@@ -8,7 +8,7 @@
 
 <p>
   <i>Endereço <%= @cec.comercial? ? "Comercial" : "Residencial" %></i><br/>
-  <%= @cec.endereco %>, <%= @cec.complemento %><br/>
+  <%= @cec.endereco %>, <%= @cec.numero %><%= " - " + @cec.complemento if @cec.complemento %><br/>
   <%= @cec.bairro %> - <%= @cec.cidade %><br/>
   CEP: <b><%= @cec.cep %></b><br/>
   <i><%= number_with_precision(@cec.distancia_da_farmacia, :precision => 3, :separator => " Km e ") %> metros de distancia</i>

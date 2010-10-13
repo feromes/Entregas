@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101005211904) do
+ActiveRecord::Schema.define(:version => 20101013153530) do
 
   create_table "cecs", :force => true do |t|
     t.string   "nome_do_cliente"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20101005211904) do
     t.boolean  "comercial"
     t.date     "data_da_entrega"
     t.text     "observacao"
+    t.integer  "numero"
   end
 
 end
