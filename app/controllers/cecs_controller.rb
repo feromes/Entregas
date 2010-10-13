@@ -36,7 +36,7 @@ class CecsController < ApplicationController
   # GET /cecs/new
   # GET /cecs/new.xml
   def new
-    @cec = Cec.new(:cep => params[:cep])
+    @cec = Cec.new(:cep => params[:cep], :numero => nil)
     @cec.save
     @cec.errors.clear
 
