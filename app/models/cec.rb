@@ -22,7 +22,7 @@
 #
 
 class Cec < ActiveRecord::Base
-  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :numero, :bairro, :cidade, :valor], :message => "não pode estar em branco"
+  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :numero, :cidade, :valor], :message => "não pode estar em branco"
   validates_numericality_of :numero, :on => :create, :message => "deve ser um número"
   before_validation :busca_cep  
   before_validation :preenche_endereco
@@ -53,7 +53,7 @@ class Cec < ActiveRecord::Base
   end
   
   def endereco_completo
-    "#{self[:endereco]}, #{self[:numero].to_s}, #{self[:bairro]}, #{self[:cidade]}, SP, Brasil"
+    "#{self[:endereco]}, #{self[:numero].to_s}, #{self[:cidade]}, São Paulo"
   end
   
   
@@ -86,10 +86,11 @@ class Cec < ActiveRecord::Base
     
     def busca_cep
       if cep.blank?
-        if self[:endereco].blank? or self[:complemento].blank? or self[:bairro].blank? or self[:cidade].blank? 
+        if self[:endereco].blank? or self[:numero].blank? or self[:cidade].blank? 
           errors.add_to_base("Endereço, complemento, bairro e cidade devem estar preenchidos para efetuar a busca de CEP")
         else
           geo=Geokit::Geocoders::MultiGeocoder.geocode (endereco_completo)
+          # geo=Geokit::Geocoders::GoogleGeocoder.geocode (endereco_completo)
           if geo.success
             self[:cep] = geo.zip
           else
