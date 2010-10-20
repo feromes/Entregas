@@ -2,7 +2,7 @@
 
   <h2>Cliente: <%= @cec.nome_do_cliente %> - CEC nº <%= @cec.id %></h2>
 
-  <h3>VALOR: R$ <%= number_with_precision(@cec.valor, :precision => 2) %></h3>
+  <h3>VALOR: R$ <%= number_with_precision(@cec.valor, :precision => 2) %> <%= @cec.forma_de_pagamento %></h3>
 
   <h3><%= @cec.data_da_entrega.strftime("%d/%m/%y") %> - REQ(s): <%= @cec.numero_do_pedido %></h3>
 

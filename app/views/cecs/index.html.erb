@@ -7,7 +7,8 @@
 	<% @cecs.each do |cec| %>
 		<tr>
 			<td>CEC<br/><%= cec.id %></td>
-			<td>REQ<br/><%= link_to cec.numero_do_pedido, cec%></td>
+			<td>REQ<br/><%= link_to cec.numero_do_pedido, cec%><br/>
+				</td>
 			<td><%= link_to cec.nome_do_cliente, cec %><br/>
 				<i>Endereço <%= cec.comercial? ? "Comercial" : "Residencial" %></i><br/>
 			  	<%= cec.endereco %>, <%= cec.numero %><%= " - " + cec.complemento if cec.complemento%><br/>
@@ -16,7 +17,8 @@
 				</td>
 			<td>Distância<br/><i><%= number_with_precision(cec.distancia_da_farmacia, :precision => 3, :separator => " Km e ") %> m</i></td>
 			<td><%= cec.data_da_entrega.strftime("%d/%m/%y") %></td>
-			<td>R$ <%= cec.valor %></td>
+			<td>R$<%= number_with_precision(cec.valor, :precision => 2) %><br/>
+				<%= cec.forma_de_pagamento %></td>
 		
 		</tr>
 	<% end %>
