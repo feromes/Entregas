@@ -1,24 +1,30 @@
 # == Schema Information
-# Schema version: 20101005005317
+# Schema version: 20101020190959
 #
 # Table name: cecs
 #
-#  id               :integer         not null, primary key
-#  nome_do_cliente  :string(255)
-#  numero_do_pedido :string(255)
-#  endereco         :string(255)
-#  complemento      :string(255)
-#  bairro           :string(255)
-#  cidade           :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  cep              :string(255)
-#  distancia        :decimal(, )
-#  latitude         :decimal(, )
-#  longitude        :decimal(, )
-#  valor            :decimal(, )
-#  comercial        :boolean
-#  data_da_entrega  :date
+#  id                 :integer         not null, primary key
+#  nome_do_cliente    :string(255)
+#  numero_do_pedido   :string(255)
+#  endereco           :string(255)
+#  complemento        :string(255)
+#  bairro             :string(255)
+#  cidade             :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  cep                :string(255)
+#  distancia          :decimal(, )
+#  latitude           :decimal(, )
+#  longitude          :decimal(, )
+#  valor              :decimal(, )
+#  comercial          :boolean
+#  data_da_entrega    :date
+#  observacao         :text
+#  numero             :integer
+#  forma_de_pagamento :string(255)
+#  entregador         :string(255)
+#  user_id            :integer
+#  filial             :integer
 #
 
 class Cec < ActiveRecord::Base
@@ -35,6 +41,8 @@ class Cec < ActiveRecord::Base
                      :auto_geocode=> {:field=>:endereco_completo, :error_message=>'Não foi possível identificar o endereço'}
   
   default_scope order('cep')
+  
+  FORMAS_DE_PAGAMENTO = ["", "cheque", "dinheiro"]
   
   def self.proximas_entregas
     find(:all, :select => "data_da_entrega", :group => "data_da_entrega", :order =>"data_da_entrega", :having => "data_da_entrega >= #{Date.today}")

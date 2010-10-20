@@ -35,6 +35,11 @@
     <%= f.text_field :valor %>
   </div>
 
+  <div class="field">
+    <%= f.label :forma_de_pagamento %><br />
+    <%= f.select :forma_de_pagamento, Cec::FORMAS_DE_PAGAMENTO %>
+  </div>
+
   <fieldset>
   <div class="field">
     <%= f.label :cep %><br />

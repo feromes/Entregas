@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101013153530) do
+ActiveRecord::Schema.define(:version => 20101020190959) do
 
   create_table "cecs", :force => true do |t|
     t.string   "nome_do_cliente"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(:version => 20101013153530) do
     t.date     "data_da_entrega"
     t.text     "observacao"
     t.integer  "numero"
+    t.string   "forma_de_pagamento"
+    t.string   "entregador"
+    t.integer  "user_id"
+    t.integer  "filial"
   end
 
 end
