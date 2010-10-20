@@ -1,5 +1,11 @@
 Entregas::Application.routes.draw do
-  resources :cecs
+  resources :entregadors 
+
+  resources :cecs do 
+    collection do
+      post 'seleciona_entregador'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -3,6 +3,7 @@
 <% else %>
 	<h1>CEC's de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> <%= "até " + @cecs.last.data_da_entrega.strftime('%d/%m') unless @cecs.last.data_da_entrega == @cecs.first.data_da_entrega %></h1>
 
+	<%= form_tag('/cecs/seleciona_entregador') do |f|%>
 	<table>
 	<% @cecs.each do |cec| %>
 		<tr>
@@ -16,12 +17,19 @@
 			  	CEP: <b><%= cec.cep %></b>
 				</td>
 			<td>Distância<br/><i><%= number_with_precision(cec.distancia_da_farmacia, :precision => 3, :separator => " Km e ") %> m</i></td>
-			<td><%= cec.data_da_entrega.strftime("%d/%m/%y") %></td>
+			<td><%= cec.data_da_entrega.strftime("%d/%m") %></td>
 			<td>R$<%= number_with_precision(cec.valor, :precision => 2) %><br/>
 				<%= cec.forma_de_pagamento %></td>
+			<td>
+				<% Entregador.find(:all).each do |e| %>
+					<%= radio_button_tag "entregador_cec[#{cec.id}]", e.id, cec.entregador.id == e.id %><%= e.nome %><br/>
+				<% end %>
+			</td>
 		
 		</tr>
 	<% end %>
 	</table>
+		<%= submit_tag "Salvar divisão de entregadores"%>
+	<% end %>
 <% end %>
 <%= link_to 'Novo Cec', new_cec_path %>

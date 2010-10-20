@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101020190959) do
+ActiveRecord::Schema.define(:version => 20101020200324) do
 
   create_table "cecs", :force => true do |t|
     t.string   "nome_do_cliente"
@@ -31,9 +31,16 @@ ActiveRecord::Schema.define(:version => 20101020190959) do
     t.text     "observacao"
     t.integer  "numero"
     t.string   "forma_de_pagamento"
-    t.string   "entregador"
+    t.string   "entregador_id"
     t.integer  "user_id"
     t.integer  "filial"
+  end
+
+  create_table "entregadors", :force => true do |t|
+    t.string   "nome"
+    t.integer  "filial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

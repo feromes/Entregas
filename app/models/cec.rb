@@ -42,6 +42,10 @@ class Cec < ActiveRecord::Base
   
   default_scope order('cep')
   
+  belongs_to :entregador
+  
+  # attr_accessor :sedex
+  
   FORMAS_DE_PAGAMENTO = ["", "cheque", "dinheiro"]
   
   def self.proximas_entregas

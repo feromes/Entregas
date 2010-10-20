@@ -1,3 +1,4 @@
+# require 'busca_frete.rb'
 class CecsController < ApplicationController
   # GET /cecs
   # GET /cecs.xml
@@ -20,6 +21,12 @@ class CecsController < ApplicationController
       end
     end
   end
+  
+  def seleciona_entregador
+    params[:entregador_cec].each {|k, v| Cec.find(k).update_attributes(:entregador => Entregador.find(v.to_i)) }
+    flash[:notice] = 'Entregadores salvos para os Cecs selecionados'
+    redirect_to :action => "index"
+  end
 
   # GET /cecs/1
   # GET /cecs/1.xml
@@ -39,6 +46,7 @@ class CecsController < ApplicationController
     @cec = Cec.new(:cep => params[:cep], :numero => nil)
     @cec.save
     @cec.errors.clear
+    # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,6 +63,7 @@ class CecsController < ApplicationController
   # POST /cecs.xml
   def create
     @cec = Cec.new(params[:cec])
+    # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
       if @cec.save
