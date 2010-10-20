@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @entregador.nome %>
+</p>
+
+<p>
+  <b>Filial:</b>
+  <%= @entregador.filial %>
+</p>
+
+
+<%= link_to 'Edit', edit_entregador_path(@entregador) %> |
+<%= link_to 'Back', entregadors_path %>
