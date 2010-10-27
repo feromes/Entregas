@@ -1,4 +1,6 @@
 Entregas::Application.routes.draw do
+  devise_for :users
+
   resources :entregadors 
 
   resources :cecs do 

@@ -8,7 +8,7 @@ gem 'rails', '3.0.0'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'geokit'
 gem "compass", ">= 0.10.5"
-# gem "devise", "= 1.1.0"
+gem "devise", "= 1.1.3"
 
 # Use unicorn as the web server
 # gem 'unicorn'

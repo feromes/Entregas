@@ -43,6 +43,7 @@ class Cec < ActiveRecord::Base
   default_scope order('cep')
   
   belongs_to :entregador
+  belongs_to :user
   
   # attr_accessor :sedex
   

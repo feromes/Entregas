@@ -12,6 +12,14 @@
 	
 	<div class="wrapper">
 		<div id="left_content">
+			<h2>Login</h2>
+				<% if user_signed_in? %>
+					<p style="color: red">Olá <%= current_user.username %><br/>
+					<%= link_to "Mudar a senha", edit_user_registration_path(current_user)%><br/>
+					<%= link_to "Sair", destroy_user_session_path %></p>
+				<% else %>
+					<p><%= link_to "Login", new_user_session_path %></p>
+				<% end %>
 			<h2>Novo CEC</h2>
 						<fieldset>
 							<% form_tag new_cec_path, :method => 'get' do %>
@@ -45,10 +53,10 @@
 			
 			<h2>Entregas</h2>
 			<fieldset>
-				<h3><%= link_to "Hoje", :controller => "cecs", :action => "index", :data => Date.today %></h3>
+				<h3><%= link_to "Hoje", cecs_path(:data => Date.today) %></h3>
 				<% Cec.proximas_entregas.each do |d| %>
 					<% @quantidade = Cec.count_by_sql "SELECT COUNT(id) FROM cecs WHERE cecs.data_da_entrega = '#{d.data_da_entrega}'"%>
-					<h3><%= link_to d.data_da_entrega.strftime("%d/%m ") + "(#{@quantidade} CECs)", :controller => "cecs", :action => "index", :data => d.data_da_entrega %></h3>
+					<h3><%= link_to d.data_da_entrega.strftime("%d/%m ") + "(#{@quantidade} CECs)", cecs_path(:data => d.data_da_entrega) %></h3>
 				<% end %>
 				
 			</fieldset>

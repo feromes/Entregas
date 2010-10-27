@@ -1,5 +1,8 @@
 # require 'busca_frete.rb'
 class CecsController < ApplicationController
+  
+  before_filter :authenticate_user!, :except => [:index, :show, :seleciona_entregador]
+  
   # GET /cecs
   # GET /cecs.xml
   def index
@@ -63,6 +66,7 @@ class CecsController < ApplicationController
   # POST /cecs.xml
   def create
     @cec = Cec.new(params[:cec])
+    @cec.user = current_user
     # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
