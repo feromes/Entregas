@@ -51,7 +51,7 @@ class Cec < ActiveRecord::Base
   FORMAS_DE_PAGAMENTO = ["", "cheque", "dinheiro"]
   
   def self.proximas_entregas
-    find(:all, :select => "data_da_entrega", :group => "data_da_entrega", :order =>"data_da_entrega", :having => "data_da_entrega >= #{Date.today}")
+    find(:all, :select => "data_da_entrega", :group => "data_da_entrega", :order =>"data_da_entrega", :having => "data_da_entrega >= '#{Date.today}'")
   end
   
   def localizacao_base
