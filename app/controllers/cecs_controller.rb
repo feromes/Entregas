@@ -1,4 +1,5 @@
 # require 'busca_frete.rb'
+
 class CecsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index, :show, :seleciona_entregador]
@@ -68,7 +69,7 @@ class CecsController < ApplicationController
     @cec = Cec.new(params[:cec])
     @cec.user = current_user
     @cec.ip_address = request.ip
-    @cec.filial = IpFilal.new(@cec.ip_address).filial
+    @cec.filial = IpFilial.new(@cec.ip_address).filial
     # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
