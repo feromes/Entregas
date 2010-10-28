@@ -113,7 +113,7 @@ class CecsController < ApplicationController
   private
   
     def ip_scoped
-      # TODO
-      Cec.where(:filial => IpFilial.new(request.ip).filial)
+      filial = IpFilial.new(request.ip).filial
+      filial != 0 ? Cec.where(:filial => filial) : Cec
     end
 end
