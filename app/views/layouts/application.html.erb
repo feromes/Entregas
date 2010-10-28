@@ -58,6 +58,18 @@
 					<h3><%= link_to d.data_da_entrega.strftime("%d/%m "), cecs_path(:data => d.data_da_entrega) %></h3>
 				<% end %>
 				
+				<div id="calendar">
+					<% [Date.today - 1.month, Date.today, Date.today + 1.month].each do |d| %>
+						<h4>Mês <%= d.month %>/<%= d.year %></h4>
+						<% calendar_for(Cec.find(:all), :year => d.year, :month => d.month) do |t| %>
+				    		<%= t.head('S', 'T', 'Q', 'Q', 'S', 'S', 'D') %>
+				    			<% t.day do |day, cecs| %>
+				      				<%= link_to day.day, cecs_path(:data => day) %>
+				    			<% end %>
+				  		<% end %>
+					<% end %>
+				</div>
+
 			</fieldset>
 		</div>
 		

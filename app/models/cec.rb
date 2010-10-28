@@ -70,6 +70,9 @@ class Cec < ActiveRecord::Base
     "#{self[:endereco]}, #{self[:numero].to_s}, #{self[:cidade]}, São Paulo"
   end
   
+  def date
+    created_at.to_date
+  end
   
   def map
     this_map = GoogleMap::Map.new
