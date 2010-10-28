@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101027153931) do
+ActiveRecord::Schema.define(:version => 20101027192615) do
 
   create_table "cecs", :force => true do |t|
     t.string   "nome_do_cliente"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20101027153931) do
     t.string   "entregador_id"
     t.integer  "user_id"
     t.integer  "filial"
+    t.string   "ip_address"
   end
 
   create_table "entregadors", :force => true do |t|

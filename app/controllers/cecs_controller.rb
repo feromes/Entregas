@@ -5,13 +5,13 @@ class CecsController < ApplicationController
   
   # GET /cecs
   # GET /cecs.xml
-  def index
+  def index    
     if params[:data] != nil
-      @cecs = Cec.all(:conditions => ["data_da_entrega = ?", params[:data]])
+      @cecs = ip_scoped.all(:conditions => ["data_da_entrega = ?", params[:data]])
     elsif params[:numero_do_pedido] != nil
-      @cecs = Cec.all(:conditions => ["numero_do_pedido like ?", "%" + params[:numero_do_pedido] + "%"])
+      @cecs = ip_scoped.all(:conditions => ["numero_do_pedido like ?", "%" + params[:numero_do_pedido] + "%"])
     else
-      @cecs = Cec.all(:conditions => ["data_da_entrega > ?", Date.today], :order => "data_da_entrega, cep")
+      @cecs = ip_scoped.all(:conditions => ["data_da_entrega > ?", Date.today], :order => "data_da_entrega, cep")
     end
     
     respond_to do |format|
@@ -34,7 +34,7 @@ class CecsController < ApplicationController
   # GET /cecs/1
   # GET /cecs/1.xml
   def show
-    @cec = Cec.find(params[:id])
+    @cec = ip_scoped.find(params[:id])
     @map = @cec.map
     
     respond_to do |format|
@@ -67,6 +67,8 @@ class CecsController < ApplicationController
   def create
     @cec = Cec.new(params[:cec])
     @cec.user = current_user
+    @cec.ip_address = request.ip
+    @cec.filial = IpFilal.new(@cec.ip_address).filial
     # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
@@ -107,4 +109,11 @@ class CecsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+    def ip_scoped
+      # TODO
+      Cec.where(:filial => IpFilial.new(request.ip).filial)
+    end
 end

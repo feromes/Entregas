@@ -55,8 +55,7 @@
 			<fieldset>
 				<h3><%= link_to "Hoje", cecs_path(:data => Date.today) %></h3>
 				<% Cec.proximas_entregas.each do |d| %>
-					<% @quantidade = Cec.count_by_sql "SELECT COUNT(id) FROM cecs WHERE cecs.data_da_entrega = '#{d.data_da_entrega}'"%>
-					<h3><%= link_to d.data_da_entrega.strftime("%d/%m ") + "(#{@quantidade} CECs)", cecs_path(:data => d.data_da_entrega) %></h3>
+					<h3><%= link_to d.data_da_entrega.strftime("%d/%m "), cecs_path(:data => d.data_da_entrega) %></h3>
 				<% end %>
 				
 			</fieldset>

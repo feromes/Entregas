@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101020190959
+# Schema version: 20101027192309
 #
 # Table name: cecs
 #
@@ -22,9 +22,10 @@
 #  observacao         :text
 #  numero             :integer
 #  forma_de_pagamento :string(255)
-#  entregador         :string(255)
+#  entregador_id      :string(255)
 #  user_id            :integer
 #  filial             :integer
+#  ip_address         :string(255)
 #
 
 class Cec < ActiveRecord::Base
