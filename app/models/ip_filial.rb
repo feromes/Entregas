@@ -13,8 +13,7 @@ class IpFilial
     IPAddr.new("192.168.7.0/24") => 10,
     IPAddr.new("192.168.5.0/24") => 19,
     IPAddr.new("192.168.9.0/24") => 9,
-    IPAddr.new("192.168.2.0/24") => 3,
-    IPAddr.new("192.168.0.102/32") =>0
+    IPAddr.new("192.168.2.0/24") => 3
   }
   
   LOCALIZACAO_FILIAL = {

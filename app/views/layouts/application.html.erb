@@ -12,7 +12,7 @@
 	
 	<div class="wrapper">
 		<div id="left_content">
-			<% if IpFilial.new(request.ip).filial == 0 %>
+			<% if IpFilial.new(request.ip).filial == 0 or current_user.admin? %>
 				<h2>Escolha a filial </h2>
 					<p><i>Filial Atual: </i><b><%= request.session[:filial] %></b></p>
 					<p>
