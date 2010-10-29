@@ -55,7 +55,7 @@ class Cec < ActiveRecord::Base
   end
   
   def localizacao_base
-    GeoKit::LatLng.new(-23.5499232, -46.6598365)
+    GeoKit::LatLng.new(IpFilial.localizacao_filial(filial)[0], IpFilial.localizacao_filial(filial)[1] )
   end
   
   def distancia_da_farmacia

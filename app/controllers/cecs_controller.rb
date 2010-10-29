@@ -55,6 +55,7 @@ class CecsController < ApplicationController
     @cec = Cec.new(:cep => params[:cep], :numero => nil)
     @cec.save
     @cec.errors.clear
+    @cec.filial = filial_selecionada
     # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
