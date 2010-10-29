@@ -6,6 +6,7 @@ Entregas::Application.routes.draw do
   resources :cecs do 
     collection do
       post 'seleciona_entregador'
+      get 'muda_filial'
     end
   end
 

@@ -26,6 +26,11 @@ class CecsController < ApplicationController
     end
   end
   
+  def muda_filial
+    request.session[:filial] = params[:filial]
+    redirect_to :back
+  end
+  
   def seleciona_entregador
     params[:entregador_cec].each {|k, v| Cec.find(k).update_attributes(:entregador => Entregador.find(v.to_i)) }
     flash[:notice] = 'Entregadores salvos para os Cecs selecionados'
@@ -35,7 +40,7 @@ class CecsController < ApplicationController
   # GET /cecs/1
   # GET /cecs/1.xml
   def show
-    @cec = ip_scoped.find(params[:id])
+    @cec = Cec.find(params[:id])
     @map = @cec.map
     
     respond_to do |format|
@@ -69,7 +74,7 @@ class CecsController < ApplicationController
     @cec = Cec.new(params[:cec])
     @cec.user = current_user
     @cec.ip_address = request.ip
-    @cec.filial = IpFilial.new(@cec.ip_address).filial
+    @cec.filial = filial_selecionada
     # @cec.sedex = BuscaFrete.valor_sedex(:de => '01228200', :para => @cec.cep)
 
     respond_to do |format|
@@ -114,7 +119,15 @@ class CecsController < ApplicationController
   private
   
     def ip_scoped
-      filial = IpFilial.new(request.ip).filial
-      filial != 0 ? Cec.where(:filial => filial) : Cec
+      # filial = IpFilial.new(request.ip).filial
+      if filial_selecionada == 0
+        request.session[:filial].nil? ? Cec : Cec.where(:filial => request.session[:filial])
+      else
+        Cec.where(:filial => filial_selecionada)
+      end
+    end
+    
+    def filial_selecionada
+      IpFilial.new(request.ip).filial != 0 ? IpFilial.new(request.ip).filial : request.session[:filial]
     end
 end

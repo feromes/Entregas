@@ -7,7 +7,7 @@
 	<table>
 	<% @cecs.each do |cec| %>
 		<tr>
-			<td>CEC<br/><%= cec.id %></td>
+			<td>CEC<br/><%= cec.filial %>/<%= cec.id %></td>
 			<td>REQ<br/><%= link_to cec.numero_do_pedido, cec%><br/>
 				<i><%= cec.user.username if cec.user %></i>
 				</td>

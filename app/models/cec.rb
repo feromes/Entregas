@@ -29,7 +29,7 @@
 #
 
 class Cec < ActiveRecord::Base
-  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :numero, :cidade, :valor], :message => "não pode estar em branco"
+  validates_presence_of [:cep, :nome_do_cliente, :numero_do_pedido, :endereco, :numero, :cidade, :valor, :filial], :message => "não pode estar em branco"
   validates_numericality_of :numero, :on => :create, :message => "deve ser um número"
   before_validation :busca_cep  
   before_validation :preenche_endereco

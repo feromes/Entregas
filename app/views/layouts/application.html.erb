@@ -12,6 +12,15 @@
 	
 	<div class="wrapper">
 		<div id="left_content">
+			<% if IpFilial.new(request.ip).filial == 0 %>
+				<h2>Escolha a filial </h2>
+					<p><i>Filial Atual: </i><b><%= request.session[:filial] %></b></p>
+					<p>
+						| <% IpFilial.filiais.each do |f| %>
+							<%= link_to f, muda_filial_cecs_path(:filial => f) %> |
+						<% end%>
+					</p>
+			<% end %>
 			<h2>Login</h2>
 				<% if user_signed_in? %>
 					<p style="color: red">Olá <%= current_user.username %><br/>

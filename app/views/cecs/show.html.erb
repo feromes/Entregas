@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-  <h2>Cliente: <%= @cec.nome_do_cliente %> - CEC nº <%= @cec.id %></h2>
+  <h2>Cliente: <%= @cec.nome_do_cliente %> - CEC nº <%= @cec.filial %>/<%= @cec.id %></h2>
 
   <h3>VALOR: R$ <%= number_with_precision(@cec.valor, :precision => 2) %> <%= @cec.forma_de_pagamento %></h3>
 
