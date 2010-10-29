@@ -29,6 +29,7 @@
 				<% else %>
 					<p><%= link_to "Login", new_user_session_path %></p>
 				<% end %>
+			<h2><%= link_to "Entregadores", entregadors_path%></h2>
 			<h2>Novo CEC</h2>
 						<fieldset>
 							<% form_tag new_cec_path, :method => 'get' do %>

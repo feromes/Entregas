@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101027192309
+# Schema version: 20101029014204
 #
 # Table name: cecs
 #

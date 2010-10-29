@@ -1,4 +1,4 @@
-<h1>Listing entregadors</h1>
+<h1>Listando entregadores</h1>
 
 <table>
   <tr>
@@ -13,13 +13,12 @@
   <tr>
     <td><%= entregador.nome %></td>
     <td><%= entregador.filial %></td>
-    <td><%= link_to 'Show', entregador %></td>
-    <td><%= link_to 'Edit', edit_entregador_path(entregador) %></td>
-    <td><%= link_to 'Destroy', entregador, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Exibir', entregador %></td>
+    <td><%= link_to 'Editar', edit_entregador_path(entregador) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Entregador', new_entregador_path %>
+<%= link_to 'Novo Entregador', new_entregador_path %>

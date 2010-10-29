@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101027192309
+# Schema version: 20101029014204
 #
 # Table name: entregadors
 #
@@ -8,6 +8,7 @@
 #  filial     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  ativo      :boolean
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

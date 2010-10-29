@@ -115,7 +115,7 @@ class CecsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
   
     def ip_scoped
@@ -126,8 +126,5 @@ class CecsController < ApplicationController
         Cec.where(:filial => filial_selecionada)
       end
     end
-    
-    def filial_selecionada
-      IpFilial.new(request.ip).filial != 0 ? IpFilial.new(request.ip).filial : request.session[:filial]
-    end
+
 end

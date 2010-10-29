@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101027192309
+# Schema version: 20101029014204
 #
 # Table name: entregadors
 #
@@ -8,8 +8,10 @@
 #  filial     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  ativo      :boolean
 #
 
 class Entregador < ActiveRecord::Base
   has_many :cecs
+  validates_presence_of [:nome, :filial], :message => "can't be blank"
 end
