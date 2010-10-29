@@ -12,14 +12,16 @@
 	
 	<div class="wrapper">
 		<div id="left_content">
-			<% if IpFilial.new(request.ip).filial == 0 or current_user.admin? %>
-				<h2>Escolha a filial </h2>
-					<p><i>Filial Atual: </i><b><%= request.session[:filial] %></b></p>
-					<p>
-						| <% IpFilial.filiais.each do |f| %>
-							<%= link_to f, muda_filial_cecs_path(:filial => f) %> |
-						<% end%>
-					</p>
+			<% unless current_user.nil? %>
+				<% if IpFilial.new(request.ip).filial == 0 or current_user.admin? %>
+					<h2>Escolha a filial </h2>
+						<p><i>Filial Atual: </i><b><%= request.session[:filial] %></b></p>
+						<p>
+							| <% IpFilial.filiais.each do |f| %>
+								<%= link_to f, muda_filial_cecs_path(:filial => f) %> |
+							<% end%>
+						</p>
+				<% end %>
 			<% end %>
 			<h2>Login</h2>
 				<% if user_signed_in? %>
