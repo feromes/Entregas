@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     end
     
     def filial_selecionada
-      IpFilial.new(request.ip).filial != 0 ? IpFilial.new(request.ip).filial : request.session[:filial]
+      # IpFilial.new(request.ip).filial != 0 ? IpFilial.new(request.ip).filial : request.session[:filial]
+      request.session[:filial].nil? ? IpFilial.new(request.ip).filial : request.session[:filial]
     end
 end
