@@ -109,11 +109,16 @@ class CecsController < ApplicationController
   # DELETE /cecs/1.xml
   def destroy
     @cec = Cec.find(params[:id])
-    @cec.destroy
+    if current_user.admin?
+      @cec.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(cecs_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(cecs_url) }
+        format.xml  { head :ok }
+      end
+    else
+      flash[:notice] = "Operação não permitida"
+      redirect_to @cec
     end
   end
 
