@@ -1,7 +1,7 @@
 <% if @cecs.empty? %>
 	<h1>Nenhum CEC</h1>
 <% else %>
-	<h1>CEC's de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> <%= "até " + @cecs.last.data_da_entrega.strftime('%d/%m') unless @cecs.last.data_da_entrega == @cecs.first.data_da_entrega %></h1>
+	<h1>CEC's de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> (<%= @cecs.size %>) <%= "até " + @cecs.last.data_da_entrega.strftime('%d/%m') unless @cecs.last.data_da_entrega == @cecs.first.data_da_entrega %></h1>
 
 	<%= form_tag('/cecs/seleciona_entregador') do |f|%>
 	<table>
