@@ -41,7 +41,7 @@ class Cec < ActiveRecord::Base
                      :lng_column_name => :longitude,
                      :auto_geocode=> {:field=>:endereco_completo, :error_message=>'Não foi possível identificar o endereço'}
   
-  default_scope order('cep')
+  default_scope order('entregador_id', 'cep')
   
   belongs_to :entregador
   belongs_to :user

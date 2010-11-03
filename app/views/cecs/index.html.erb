@@ -5,7 +5,17 @@
 
 	<%= form_tag('/cecs/seleciona_entregador') do |f|%>
 	<table>
+	<% @entregador_atual = nil %>
 	<% @cecs.each do |cec| %>
+		<% if cec.entregador != @entregador_atual %>
+			</table>
+			<% if !cec.entregador.nil? %>
+				<h2><%= cec.entregador.nome %> de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> </h2>
+			<% else %>
+				<h2>Sem entregador definido</h2>
+			<% end %>
+			<table>
+		<% end %>
 		<tr>
 			<td>CEC<br/><%= cec.filial %>/<%= cec.id %></td>
 			<td>REQ<br/><%= link_to cec.numero_do_pedido, cec%><br/>
@@ -26,7 +36,7 @@
 					<%= radio_button_tag "entregador_cec[#{cec.id}]", e.id, (cec.entregador and cec.entregador.id == e.id) %><%= e.nome %><br/>
 				<% end %>
 			</td>
-		
+			<% @entregador_atual = cec.entregador %>
 		</tr>
 	<% end %>
 	</table>
