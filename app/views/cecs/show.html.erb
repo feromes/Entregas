@@ -26,6 +26,6 @@
 
 <span class="links">
 <%= link_to 'Editar', edit_cec_path(@cec) %> |
-<% if current_user.admin? %><%= link_to 'Excluir', cec_path(@cec), :method => :delete, :confirm => "Tem certeza?" %> |<% end %>
+<% if current_user.respond_to?("admin?") and current_user.admin? %><%= link_to 'Excluir', cec_path(@cec), :method => :delete, :confirm => "Tem certeza?" %> |<% end %>
 <%= link_to 'Voltar', cecs_path %>
 </span>
