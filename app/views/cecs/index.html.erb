@@ -10,7 +10,7 @@
 		<% if cec.entregador != @entregador_atual %>
 			</table>
 			<% if !cec.entregador.nil? %>
-				<h2><%= cec.entregador.nome %> de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> </h2>
+				<h2 class="entregador"><%= cec.entregador.nome %> de <%= @cecs.first.data_da_entrega.strftime('%d/%m') %> </h2>
 			<% else %>
 				<h2>Sem entregador definido</h2>
 			<% end %>
